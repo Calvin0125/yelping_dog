@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'Calligraffitti';
+  src: url('/fonts/calligraffitti.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+header {
+  background-color: black;
+}
+
+h1 {
+  position: absolute;
+  right: 25vw;
+  top: 40vh;
+  color: white;
+  font-size: 5rem;
+}
+
+img.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+img.logo {
+  height: 200px;
+  width: 150px;
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+nav {
+  margin-top: -4px;
+  font-size: 2rem;
+  padding: 0 30px;
+  background-color: rgb(167, 17, 17);
+  width: 100%;
+  height: 57px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  padding: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+div.home-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.home {
+  width: 50vw;
+  height: 85vh;
+}
+
+div.spacer {
+  flex-grow: 1;
+}
+
+div.text h2 {
+  font-size: 3rem;
+  padding-bottom: 0;
+  padding-top: 20px;
+  flex-grow: 2;
+  text-align: center;
+}
+
+div.text h3 {
+  font-size: 2rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+div.home.text img {
+  flex-grow: 1;
+  height: 50px;
+  width: 75px;
+  position: relative;
+  bottom: 8%;
+}
+
+div.home {
+  box-sizing: border-box;
+}
+
+div.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3efe0;
+  font-family: "Calligraffitti";
+  padding: 0 20px;
+}
+
+div.home.image img {
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  margin: 0 20px 0px 20px;
+  padding-top: 20px;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+img.wine-cheese {
+  float: right;
+  margin: 20px 5px 20px 20px;
+  border-radius: 5px;
+}
+
+img.wine {
+  height: 250px;
+  width: 37vw;
+  float: left;
+  margin: 30px 20px 0 5px;
+  border-radius: 5px;
+}
+
+footer {
+  clear: both;
+  background-color: rgb(46, 60, 75);
+  color: white;
+  padding: 30px 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+  padding-bottom: 5px;
+}
+
+h2.contact, h2.address {
+  padding-bottom: 25px;
+}
+
+p.address {
+  padding-top: 0;
+  margin: 0 0 5px 0;
+  text-align: left;
+}
+
+dl {
+  display: flex;
+}
+
+dt {
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+div.socialmedia {
+  margin-right: 15vw;
+}
+
+.socialicons {
+  padding-top: 20px;
+}
+
+.socialicons img {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Yelping Dog Wine</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+  </head>
+  <body>
+  <header>
+    <%= yield_content :main_photo %>
+  </header>
+  <main>
+    <nav>
+      <ul>
+        <a href="/home"><li>Home</li></a>
+        <a href="/menus"><li>Menus</li></a>
+        <a href="/events"><li>Events</li></a>
+        <a href="/about"><li>About</li></a>
+        <a href="#info"><li>Contact</li></a>
+        <a href="#info"><li>Hours & Location</li></a>
+      </ul>
+    </nav>
+    <%= yield %>
+  </main>
+  <footer id="info">
+    <div class="hours">
+      <h2>Hours</h2>
+      <dl>
+        <dt>Monday: </dt>
+        <dd>Closed</dl>
+      </dl>
+      <dl>
+        <dt>Tuesday: </dt>
+        <dd>11AM - 9PM</dd>
+      </dl>
+      <dl>
+        <dt>Wednesday: </dt>
+        <dd>11AM - 9PM</dd>
+      </dl>
+      <dl>
+        <dt>Thurday: </dt>
+        <dd>11AM - 9PM</dd>
+      </dl>
+      <dl>
+        <dt>Friday: </dt>
+        <dd>11AM - 10PM</dd>
+      </dl>
+      <dl>
+        <dt>Saturday: </dt>
+        <dd>11AM - 10PM</dd>
+      </dl>
+      <dl>
+        <dt>Sunday: </dt>
+        <dd>12PM - 6PM</dd>
+      </dl>
+    </div>
+    <div class="contact">
+      <h2 class="contact">Contact</h2>
+      <dl>
+        <dt>Phone: </dt>
+        <dd>540-885-2275</dd>
+      </dl>
+    </div>
+    <div class="location">
+      <h2 class="address">Address</h2>
+      <p class="address">9 E Beverly St,</p>
+      <p class="address">Staunton, VA, 24401</p>
+    </div>
+    <div class="socialmedia">
+      <h2>Social Media</h2>
+      <div class="socialicons">
+        <img src="/images/facebook_icon.png" />
+        <img src="/images/twitter_icon.png" />
+        <img src="/images/instagram_icon.png" />
+      </div>
+    </div>
+  </footer>
+  </body>
+</html>
