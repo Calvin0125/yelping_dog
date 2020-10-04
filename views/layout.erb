@@ -11,13 +11,22 @@
   </header>
   <main>
     <nav>
-      <ul>
-        <a href="/home"><li>Home</li></a>
-        <a href="/menus"><li>Menus</li></a>
-        <a href="/events"><li>Events</li></a>
-        <a href="/about"><li>About</li></a>
-        <a href="#info"><li>Contact</li></a>
-        <a href="#info"><li>Hours & Location</li></a>
+      <ul class="nav">
+        <li><a href="/home">Home</a></li>
+        <li class="dropdown"><a href="#">Menus</a>
+          <ul class="dropdown">
+            <li class="dropdown">
+              <a target="_tab" href="/images/food_menu.pdf">Food Menu</a>
+            </li>
+            <li class="dropdown">
+              <a href="/wine_menu">Wine Menu</a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="/events">Events</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="#info">Contact</a></li>
+        <li><a href="#info">Hours & Location</a></li>
       </ul>
     </nav>
     <%= yield %>

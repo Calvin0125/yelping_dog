@@ -1,0 +1,14 @@
+<div class="menu-wrapper">
+  <div class="weekly-wine">
+    <h2>This Week's Wines by the Glass</h2>
+    <% @wine_hash.each do |type, list| %>
+      <h3><%= type.capitalize %></h3>
+      <ul>
+      <% list.each do |wine| %>
+        <li><%= wine %></li>
+      <% end%>
+      </ul>
+    <% end %>
+  </div>
+  <img src="/images/grapes.png">
+</div>
