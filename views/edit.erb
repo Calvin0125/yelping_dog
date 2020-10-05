@@ -1,0 +1,24 @@
+<div class="menu-wrapper">
+  <form action="/edit" method="post" id="submit-changes"></form>
+    <div class="weekly-wine">
+      <h2>This Week's Wines by the Glass</h2>
+      <% @wine_hash.each do |type, list| %>
+        <form action="/add/<%= type %>" method="post" id="add">
+          <button type="submit" class="edit"><img src="/images/plus.png"></button>
+        </form>
+        <h3 id="<%= type %>"><%= type.capitalize %></h3>
+        <ul>
+        <% list.each_with_index do |wine, index| %>
+          <li class="edit">
+            <form action="/remove/<%= type %>/<%= wine %>" method="post" id="remove">
+              <button type="submit" class="edit"><img src="/images/minus.png"></button>
+            </form>
+            <input form="submit-changes" class="wine-menu" type="text" value="<%= wine %>" name="<%= type.to_s + index.to_s %>">
+          </li>
+        <% end%>
+        </ul>
+      <% end %>
+      <button type="submit" form="submit-changes">Submit Changes</button>
+    </div>
+  <img class="weekly-wine" src="/images/grapes.png">
+</div>

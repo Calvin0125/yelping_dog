@@ -1,5 +1,10 @@
 <div class="menu-wrapper">
   <div class="weekly-wine">
+    <% if session[:logged_in] == true %>
+      <form action="/edit" method="get" id="edit">
+        <button type="submit">Edit</button>
+      </form>
+    <% end %>
     <h2>This Week's Wines by the Glass</h2>
     <% @wine_hash.each do |type, list| %>
       <h3><%= type.capitalize %></h3>
@@ -10,5 +15,5 @@
       </ul>
     <% end %>
   </div>
-  <img src="/images/grapes.png">
+  <img class="weekly-wine" src="/images/grapes.png">
 </div>

@@ -1,37 +1,20 @@
 require "sinatra"
 require "sinatra/content_for"
 require "tilt/erubis"
+require_relative "database_persistence"
 
 configure do
   enable :sessions
-  set :session_secret, 'secret'
 end
 
 configure(:development) do
   require "sinatra/reloader"
+  also_reload "database_persistence.rb"
 end
 
 before do
-  @wine_hash = {
-    red: [
-      "Screaming Eagle Cabernet Sauvignon, 1992, Oakville, Napa Valley, CA",
-      "DRC Romanee-Conti, 1995, Vosne-Romaneè, Burgundy, France",
-      "Vietti Ravera, 2001, Barolo, Italy",
-      "Chateau Petrus, 1975, Pomerol, Bourdeaux, France",
-      "Penfolds Grange, 1999, South Australia"
-    ],
-    white: [
-      "Domaine Leflaive Montrachet, 2007, Puligny-Montrachet, Burgundy, France",
-      "Chateau Montalena Chardonnay 2012, Napa Valley, CA",
-      "Domaine Georges Vernay, 2017, Condrieu, Rhone, France",
-      "Egon Müller Scharzhofberger Riesling Auslese, 2014, Mosel, Germany",
-      "Seresin Marama Sauvignon Blanc, 2013, Marlborough, New Zealand"
-    ],
-    bubbly: [
-      "Dom Perignon Brut, 2002, Champagne, France",
-      "Schramsberg Brut Rose, 2017, Napa Valley, CA"
-    ]
-  }
+  @storage = DatabasePersistence.new(logger)
+  @wine_hash = @storage.create_wine_hash
 end
 
 get "/" do
@@ -48,4 +31,42 @@ end
 
 get "/wine_menu" do
   erb :wine_menu, layout: :layout
+end
+
+get "/admin" do
+  erb :admin, layout: :layout
+end
+
+post "/admin" do
+  if params[:username] == "Admin" && params[:password] == "Cabernet123"
+    session[:logged_in] = true
+    redirect "/wine_menu"
+  else
+    session[:error] = "Incorrect username or password"
+    redirect "/admin"
+  end
+end
+
+post "/logout" do
+  session[:logged_in] = false
+  redirect "/admin"
+end
+
+get "/edit" do
+  erb :edit, layout: :layout
+end
+
+post "/edit" do
+  @storage.update_all_wines(@wine_hash, params)
+  redirect "/wine_menu"
+end
+
+post "/add/:type" do |type|
+  @storage.add_wine(type, 'New wine here...')
+  redirect "/edit##{type}"
+end
+
+post "/remove/:type/:name" do |type, name|
+  @storage.remove_wine(name)
+  redirect "/edit##{type}"
 end

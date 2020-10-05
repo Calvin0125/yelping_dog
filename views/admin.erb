@@ -1,0 +1,32 @@
+<div class="admin-wrapper">
+  <% if session[:logged_in] %>
+    <h2>You are logged in</h2>
+    <form action="/logout" method="post" id="logout">
+      <button type="submit">Log Out</button>
+    </form>
+  <% else %>
+    <h2>Log in to make changes</h2>
+    <% if session[:error] %>
+      <h3><%= session.delete(:error) %></h3>
+    <% end %>
+    <form action="/admin" method="post" id="login">
+      <dl>
+        <dt>
+          <label for="username">Username</label>
+        </dt>
+        <dd>
+          <input type="text" name="username" id="username">
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          <label for="password">Password</label>
+        </dt>
+        <dd>
+          <input type="password" name="password" id="password">
+        </dd>
+      </dl>
+      <button type="submit">Submit</button>
+    </form>
+  <% end %>
+</div>

@@ -12,21 +12,21 @@
   <main>
     <nav>
       <ul class="nav">
-        <li><a href="/home">Home</a></li>
-        <li class="dropdown"><a href="#">Menus</a>
+        <a class="nav-item" href="/home"><li>Home</li></a>
+        <li class="nav-item">Menus
           <ul class="dropdown">
-            <li class="dropdown">
-              <a target="_tab" href="/images/food_menu.pdf">Food Menu</a>
-            </li>
-            <li class="dropdown">
-              <a href="/wine_menu">Wine Menu</a>
-            </li>
+            <a class="dropdown nav-item" target="_tab" href="/images/food_menu.pdf">
+              <li class="dropdown">Food Menu</li>
+            </a>
+            <a class="dropdown nav-item" href="/wine_menu">
+              <li class="dropdown">Wine Menu</li>
+            </a>
           </ul>
         </li>
-        <li><a href="/events">Events</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="#info">Contact</a></li>
-        <li><a href="#info">Hours & Location</a></li>
+        <a class="nav-item" href="/events"><li>Events</li></a>
+        <a class="nav-item" href="/about"><li>About</li></a>
+        <a class="nav-item" href="#info"><li>Contact</li></a>
+        <a class="nav-item" href="#info"><li>Hours & Location</li></a>
       </ul>
     </nav>
     <%= yield %>
@@ -67,20 +67,26 @@
       <h2 class="contact">Contact</h2>
       <dl>
         <dt>Phone: </dt>
-        <dd>540-885-2275</dd>
+        <dd>123-456-7890</dd>
       </dl>
     </div>
     <div class="location">
       <h2 class="address">Address</h2>
-      <p class="address">9 E Beverly St,</p>
-      <p class="address">Staunton, VA, 24401</p>
+      <p class="address">123 Main Street,</p>
+      <p class="address">Small Town, VA, 12345</p>
     </div>
     <div class="socialmedia">
       <h2>Social Media</h2>
       <div class="socialicons">
-        <img src="/images/facebook_icon.png" />
-        <img src="/images/twitter_icon.png" />
-        <img src="/images/instagram_icon.png" />
+        <a href="https://www.facebook.com" target="_tab">
+          <img src="/images/facebook_icon.png" />
+        </a>
+        <a href="https://www.twitter.com" target="_tab"> 
+          <img src="/images/twitter_icon.png" />
+        </a>
+        <a href="https://www.instagram.com" target="_tab">
+          <img src="/images/instagram_icon.png" />
+        </a>
       </div>
     </div>
   </footer>
