@@ -66,7 +66,7 @@ post "/add/:type" do |type|
   redirect "/edit##{type}"
 end
 
-post "/remove/:type/:name" do |type, name|
-  @storage.remove_wine(name)
+post "/remove/:type/:id" do |type, id|
+  @storage.remove_wine(id)
   redirect "/edit##{type}"
 end

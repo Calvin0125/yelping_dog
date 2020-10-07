@@ -15,13 +15,14 @@ class DatabasePersistence
   end
 
   def create_wine_hash
-    wine = query("SELECT type, name FROM wine")
+    wine = query("SELECT * FROM wine")
     wine_hash = {}
     wine.each do |tuple|
-      type = tuple['type'].to_sym
+      type = tuple['type']
       name = tuple['name']
-      wine_hash[type] ||= []
-      wine_hash[type].push(name)
+      id = tuple['id']
+      wine_hash[type] ||= {};
+      wine_hash[type][id] = name;
     end
     wine_hash
   end
@@ -30,32 +31,23 @@ class DatabasePersistence
     query("INSERT INTO wine (type, name) VALUES ($1, $2)", type, name)
   end
 
-  def remove_wine(name)
-    query("DELETE FROM wine WHERE name = $1", name)
+  def remove_wine(id)
+    query("DELETE FROM wine WHERE id = $1", id)
   end
 
   def update_all_wines(wine_hash, params)
-    current_names = []
-    wine_hash.each do |_, value|
-      current_names += value
+    params.reject! do |key, wine|
+      type = key.scan(/[a-zA-Z]+/)[0]
+      id = key.scan(/[0-9]+/)[0]
+      wine_hash[type][id] == wine
     end
 
-    names_to_delete = current_names.reject do |name|
-      params.values.include?(name)
-    end
+    wines_to_delete = params.keys.map { |key| key.scan(/[0-9]+/)[0] }
+    wines_to_delete.each { |id| remove_wine(id) }
 
-    names_to_add = params.reject do |_, name| 
-      current_names.include?(name)
+    params.each do |key, wine|
+      type = key.scan(/[a-zA-Z]+/)[0]
+      add_wine(type, wine)
     end
-
-    names_to_delete.uniq.each do |name|
-      remove_wine(name)
-    end
-
-    names_to_add.each do |type, name|
-      type = type.chop
-      add_wine(type, name)
-    end
-
   end
 end

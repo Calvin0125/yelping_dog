@@ -9,7 +9,7 @@
     <% @wine_hash.each do |type, list| %>
       <h3><%= type.capitalize %></h3>
       <ul>
-      <% list.each do |wine| %>
+      <% list.values.each do |wine| %>
         <li><%= wine %></li>
       <% end%>
       </ul>
