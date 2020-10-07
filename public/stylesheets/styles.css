@@ -19,60 +19,71 @@
 }
 
 html {
-  font-size: 16px;
   font-family: 'Libre', Arial, sans-serif;
+  font-size: 16px;
 }
 
+/* styles for layout */
+
+/*   header */
 header {
   background-color: black;
 }
 
+img.fullscreen {
+  height: 100vh;
+  width: 100vw;
+}
+
 h1 {
+  color: white;
+  font-size: 5rem;
   position: absolute;
   right: 25vw;
   top: 40vh;
-  color: white;
-  font-size: 5rem;
 }
 
-img.fullscreen {
-  width: 100vw;
-  height: 100vh;
-}
-
-img.logo {
-  height: 200px;
-  width: 150px;
-  float: left;
-  margin: 0 20px 20px 0;
-}
-
+/*   nav bar */
 nav {
-  margin-top: -4px;
-  font-size: 2rem;
-  background-color: rgb(167, 17, 17);
-  width: 100%;
-  height: 57px;
   box-sizing: border-box;
+  background-color: rgb(167, 17, 17);
+  font-size: 2rem;
+  height: 57px;
+  margin-top: -4px;
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 100;
 }
 
 ul.nav {
-  list-style-type: none;
   display: flex;
+  list-style-type: none;
+}
+
+.nav-item {
+  box-sizing: border-box;
+  color: white;
+  flex-grow: 1;
+  height: 57px;
+  padding: 13px 0 10px 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  background-color: rgb(95, 12, 12);
 }
 
 ul.dropdown {
-  list-style-type: none;
-  visibility: hidden;
   background-color: rgb(167, 17, 17);
-  position: relative;
-  top: 13px;
-  height: 114px;
   display: flex;
   flex-direction: column;
+  height: 114px;
+  list-style-type: none;
+  position: relative;
+  top: 13px;
+  visibility: hidden;
 }
 
 li:hover ul.dropdown {
@@ -83,22 +94,54 @@ a.dropdown {
   flex-grow: 1;
 }
 
-.nav-item {
-  padding: 13px 0 10px 0;
-  flex-grow: 1;
-  text-align: center;
-  box-sizing: border-box;
-  height: 57px;
+/*   footer */
+footer {
+  background-color: rgb(46, 60, 75);
+  clear: both;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px 20px 20px;
 }
 
-.nav a {
-  text-decoration: none;
+h2 {
+  padding-bottom: 5px;
 }
 
-.nav-item:hover {
-  background-color: rgb(95, 12, 12);
+dl {
+  display: flex;
 }
+
+dt {
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+
+h2.contact, h2.address {
+  padding-bottom: 25px;
+}
+
+p.address {
+  margin: 0 0 5px 0;
+  padding-top: 0;
+  text-align: left;
+}
+
+div.socialmedia {
+  margin-right: 15vw;
+}
+
+.socialicons {
+  padding-top: 20px;
+}
+
+.socialicons img {
+  height: 35px;
+  margin-right: 10px;
+  width: 35px;
+}
+
+/* styles for home page */
 
 div.home-container {
   display: flex;
@@ -106,47 +149,44 @@ div.home-container {
 }
 
 div.home {
-  width: 50vw;
+  box-sizing: border-box;
   height: 85vh;
+  width: 50vw;
 }
 
 div.spacer {
   flex-grow: 1;
 }
 
+div.text {
+  align-items: center;
+  background-color: #f3efe0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Calligraffitti";
+  padding: 0 20px;
+}
+
 div.text h2 {
+  flex-grow: 2;
   font-size: 3rem;
   padding-bottom: 0;
   padding-top: 20px;
-  flex-grow: 2;
   text-align: center;
 }
 
 div.text h3 {
-  font-size: 2rem;
   flex-grow: 1;
+  font-size: 2rem;
   text-align: center;
 }
 
 div.home.text img {
+  bottom: 8%;
   flex-grow: 1;
   height: 50px;
-  width: 75px;
   position: relative;
-  bottom: 8%;
-}
-
-div.home {
-  box-sizing: border-box;
-}
-
-div.text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f3efe0;
-  font-family: "Calligraffitti";
-  padding: 0 20px;
+  width: 75px;
 }
 
 div.home.image img {
@@ -154,26 +194,7 @@ div.home.image img {
   height: 100%;
 }
 
-p {
-  margin: 0 20px 0px 20px;
-  padding-top: 20px;
-  line-height: 1.5rem;
-  text-align: center;
-}
-
-img.wine-cheese {
-  float: right;
-  margin: 20px 5px 20px 20px;
-  border-radius: 5px;
-}
-
-img.wine {
-  height: 250px;
-  width: 37vw;
-  float: left;
-  margin: 30px 20px 0 5px;
-  border-radius: 5px;
-}
+/* styles for wine menu */
 
 div.menu-wrapper {
   background-color: #f3efe0;
@@ -181,23 +202,22 @@ div.menu-wrapper {
 }
 
 .menu-wrapper img {
-  width: 50%;
   height: auto;
+  width: 50%;
 }
 
 div.weekly-wine {
-  padding: 30px;
-  font-family: "Calligraffitti";
-  text-align: center;
   background-color: #f3efe0;
-  width: 50%;
   font-family: 'Kalam';
   font-size: 1.5rem;
+  padding: 30px;
+  text-align: center;
+  width: 50%;
 }
 
 .weekly-wine ul {
-  padding-bottom: 20px;
   list-style-type: none;
+  padding-bottom: 20px;
 }
 
 .weekly-wine li {
@@ -208,22 +228,54 @@ img.weekly-wine {
   height: 100%;
 }
 
-div.admin-wrapper {
-  background-color: #f3efe0;
-  width: 100%;
-  padding: 100px 0;
+/* styles for about page */
+
+p {
+  line-height: 1.5rem;
+  margin: 0 20px 0px 20px;
+  padding-top: 20px;
   text-align: center;
 }
 
+img.logo {
+  float: left;
+  height: 200px;
+  margin: 0 20px 20px 0;
+  width: 150px;
+}
+
+img.wine-cheese {
+  border-radius: 5px;
+  float: right;
+  margin: 20px 5px 20px 20px;
+}
+
+img.wine {
+  border-radius: 5px;
+  float: left;
+  height: 250px;
+  margin: 30px 20px 0 5px;
+  width: 37vw;
+}
+
+/* styles for admin page */
+
+div.admin-wrapper {
+  background-color: #f3efe0;
+  padding: 100px 0;
+  text-align: center;
+  width: 100%;
+}
+
 .admin-wrapper h2 {
-  padding-bottom: 40px;
   font-size: 2.5rem;
+  padding-bottom: 40px;
 }
 
 .admin-wrapper h3 {
-  padding-bottom: 20px;
+  color: rgb(167, 17, 17);
   font-size: 1.5rem;
-  color: rgb(167, 17, 17)
+  padding-bottom: 20px;
 }
 
 #login {
@@ -239,93 +291,49 @@ div.admin-wrapper {
 }
 
 input {
-  padding: 10px;
   box-sizing: border-box;
   font-size: 2rem;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 button {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  width: 20%;
-  padding: 10px 0;
-  border-radius: 5px;
   border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 10px 0;
+  width: 20%;
 }
 
+/* styles for edit menu page */
+
 input.wine-menu {
+  font-family: 'Libre';
   font-size: 1rem;
   width: 100%;
-  font-family: 'Libre';
 }
 
 button.edit {
-  padding: 0;
-  width: 30px;
-  height: 30px;
   background-color: #f3efe0;
   border: none;
-  margin: 0 10px 0 0;
-  float: left;
   cursor: pointer;
+  height: 30px;
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 0;
+  width: 30px;
 }
 
 button.edit img {
-  width: 100%;
+  bottom: 5px;
   height: auto;
   position: relative;
-  bottom: 5px;
+  width: 100%;
 }
 
 li.edit {
+  align-items: center;
   display: flex;
   height: 50px;
-  align-items: center;
-}
-
-footer {
-  clear: both;
-  background-color: rgb(46, 60, 75);
-  color: white;
-  padding: 30px 20px 20px 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-h2 {
-  padding-bottom: 5px;
-}
-
-h2.contact, h2.address {
-  padding-bottom: 25px;
-}
-
-p.address {
-  padding-top: 0;
-  margin: 0 0 5px 0;
-  text-align: left;
-}
-
-dl {
-  display: flex;
-}
-
-dt {
-  padding-right: 10px;
-  padding-bottom: 5px;
-}
-
-div.socialmedia {
-  margin-right: 15vw;
-}
-
-.socialicons {
-  padding-top: 20px;
-}
-
-.socialicons img {
-  height: 35px;
-  width: 35px;
-  margin-right: 10px;
 }
