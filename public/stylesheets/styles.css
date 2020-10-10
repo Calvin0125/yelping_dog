@@ -228,7 +228,132 @@ img.weekly-wine {
   height: 100%;
 }
 
+/* styles for events page */
+
+div.event-wrapper {
+  display: flex;
+  background-color: #f3efe0;
+  padding: 20px 35px 20px 20px;
+  justify-content: space-between;
+}
+
+div.event-list {
+  width: 50%;
+}
+
+h2.event {
+  font-size: 2.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+dl.event {
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+dl.event dt {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+dl.event dd {
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+input:checked + label + form {
+  display: block;
+}
+
+label.add-event {
+  font-size: 1.5rem;
+  color: blue;
+  cursor: pointer;
+}
+
+label.edit-event {
+  font-size: 1.5rem;
+  color: green;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input:checked + label::before {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .4);
+  content: "";
+}
+
+#event-image {
+  height: 100%;
+}
+
+.event-form {
+  position: absolute;
+  z-index: 100;
+  top: 30%;
+  left: 30%;
+  background: #f3efe0;
+  padding: 15px 30px 30px 30px;
+  font-size: 1.5rem;
+}
+
+.event-form input, select, textarea {
+  font-size: 1.5rem;
+  padding: 5px;
+  width: 100%;
+  margin: 0;
+}
+
+.event-form dl {
+  width: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.event-form dl dd {
+  width: 100%;
+}
+
+#cancel {
+  color: red;
+  float: right;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+textarea {
+  font-family: Arial;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#delete {
+  background-color: #f3efe0;
+  border: none;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+  margin-top: 0;
+  width: auto;
+  padding: 5px 0;
+  color: red;
+  font-family: 'Libre';
+  cursor: pointer;
+}
+
 /* styles for about page */
+
+div.about-wrapper {
+  background-color: #f3efe0;
+  overflow: auto;
+}
 
 p {
   line-height: 1.5rem;
@@ -247,14 +372,14 @@ img.logo {
 img.wine-cheese {
   border-radius: 5px;
   float: right;
-  margin: 20px 5px 20px 20px;
+  margin: 20px 0 20px 20px;
 }
 
 img.wine {
   border-radius: 5px;
   float: left;
   height: 250px;
-  margin: 30px 20px 0 5px;
+  margin: 30px 20px 0 0;
   width: 37vw;
 }
 

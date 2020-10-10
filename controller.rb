@@ -12,9 +12,33 @@ configure(:development) do
   also_reload "database_persistence.rb"
 end
 
+helpers do
+
+  def formatTime(params)
+    startTime = "#{params['start-hour']}:#{params['start-minute']}" +
+                "#{params['start-period']}"
+    endTime = "#{params['end-hour']}:#{params['end-minute']}" +
+              "#{params['end-period']}"
+    "#{startTime} - #{endTime}"
+  end
+
+  def event_from_params(params)
+    date = "#{params['month']}/#{params['day']}/#{params['year']}"
+    time = formatTime(params)
+    return {
+      name: params['name'],
+      date: date,
+      time: time,
+      price: params['price'],
+      description: params['description']
+    }
+  end
+end
+
 before do
   @storage = DatabasePersistence.new(logger)
   @wine_hash = @storage.create_wine_hash
+  @events = @storage.create_events_array
 end
 
 get "/" do
@@ -54,6 +78,25 @@ end
 
 get "/edit" do
   erb :edit, layout: :layout
+end
+
+get "/events" do
+  erb :events, layout: :layout
+end
+
+post "/add/event" do
+  @storage.add_event(event_from_params(params))
+  redirect "/events"
+end
+
+post "/edit/event/:id" do |id|
+  @storage.update_event(event_from_params(params), id)
+  redirect "/events"
+end
+
+post "/delete/event/:id" do |id|
+  @storage.delete_event(id)
+  redirect "/events"
 end
 
 post "/edit" do

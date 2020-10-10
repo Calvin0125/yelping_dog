@@ -1,0 +1,289 @@
+<div class="event-wrapper">
+  <div class="event-list">
+    <h2 class="event">Upcoming Events</h2>
+    <% if session[:logged_in] == true %>
+      <input type="checkbox" id="add-event" hidden/>
+      <label for="add-event" class="add-event">&plus; Add New Event</label>
+      <form action="/add/event" method="post" class="event-form" hidden>
+      <label id="cancel" for="add-event">Cancel</label>
+        <dl>
+          <dt>
+            <label for="name">Name </label>
+          </dt>
+          <dd>
+            <input type="text" id="name" name="name" />
+          </dd>
+        </dl>
+
+        <dl class="date">
+          <dt class="date">Date</dt>
+          <dd>
+            <select name="month">
+              <option value="" disabled selected>Month</option>
+              <% "01".upto("12") do |month| %>
+                <option value=<%= month %>><%= month %></option>
+              <% end %>
+            </select>
+          </dd>
+          <dd>
+            <select name="day">
+              <option value="" disabled selected>Day</option>
+              <% "01".upto("31") do |day| %>
+                <option value=<%= day %>><%= day %></option>
+              <% end %>
+            </select>
+          </dd>
+          <dd>
+            <select name="year">
+              <option value="" disabled selected>Year</option>
+              <% "2000".upto("2100") do |year| %>
+                <option value=<%= year%>><%= year %></option>
+              <% end %>
+            </select>
+          </dd>
+        </dl>
+
+        <dl class="time">
+          <dt class="time">Start Time</dt>
+          <dd>
+            <select name="start-hour">
+              <option value="" disabled selected>Hour</option>
+              <% "01".upto("12") do |hour| %>
+                <option value=<%= hour %>><%= hour %></option>
+              <% end %>
+            </select>
+          </dd>
+          <dd>
+            <select name="start-minute">
+              <option value="" disabled selected>Minute</option>
+              <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
+            </select>
+          </dd>
+          <dd>
+            <select name="start-period">
+              <option value="" disabled selected>AM/PM</option>
+              <option value="am">AM</option>
+              <option value="pm">PM</option>
+            </select>
+          </dd>
+        </dl>
+
+        <dl class="time">
+          <dt class="time">End Time</dt>
+          <dd>
+            <select name="end-hour">
+              <option value="" disabled selected>Hour</option>
+              <% "01".upto("12") do |hour| %>
+                <option value=<%= hour %>><%= hour %></option>
+              <% end %>
+            </select>
+          </dd>
+          <dd>
+            <select name="end-minute">
+              <option value="" disabled selected>Minute</option>
+              <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
+            </select>
+          </dd>
+          <dd>
+            <select name="end-period">
+              <option value="" disabled selected>AM/PM</option>
+              <option value="am">AM</option>
+              <option value="pm">PM</option>
+            </select>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <label for="price">Price </label>
+          </dt>
+          <dd>
+            <input type="text" id="price" name="price" />
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <label for="description">Description </label>
+          </dt>
+          <dd>
+            <textarea id="desription" name="description" rows="5" cols="40"></textarea>
+          </dd>
+        </dl>
+        <button type="submit">Submit</button>
+      </form>
+    <% end %>
+    <% @events.each do |event| %>
+      <dl class="event">
+        <dt><%= event[:name] %></dt>
+        <dd><%= event[:date] %></dd>
+        <dd><%= event[:time] %></dd>
+        <dd><%= event[:price] %></dd>
+        <dd><%= event[:description] %></dd>
+      </dl>
+      <% if session[:logged_in] == true %>
+        <input type="checkbox" id="edit-event-<%= event[:id] %>" hidden/>
+        <label for="edit-event-<%= event[:id] %>" class="edit-event">&#x25B3; Edit This Event</label>
+        <form action="/edit/event/<%= event[:id] %>" method="post" class="event-form" hidden>
+        <label id="cancel" for="edit-event-<%= event[:id] %>">Cancel</label>
+          <dl>
+            <dt>
+              <label for="name">Name </label>
+            </dt>
+            <dd>
+              <input type="text" id="name" name="name" value="<%= event[:name] %>"/>
+            </dd>
+          </dl>
+
+          <dl class="date">
+            <dt class="date">Date</dt>
+            <dd>
+              <select name="month">
+                <option value="" disabled>Month</option>
+                <% "01".upto("12") do |month| %>
+                  <% if month == event[:date][0, 2]%>
+                    <option value=<%= month %> selected><%= month %></option>
+                  <% else %>
+                    <option value=<%= month %>><%= month %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="day">
+                <option value="" disabled>Day</option>
+                <% "01".upto("31") do |day| %>
+                  <% if day == event[:date][3, 2] %>
+                    <option value=<%= day %> selected><%= day %></option>
+                  <% else %>
+                    <option value=<%= day %>><%= day %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="year">
+                <option value="" disabled>Year</option>
+                <% "2000".upto("2100") do |year| %>
+                  <% if year == event[:date][6, 4] %>
+                    <option value=<%= year%> selected><%= year %></option>
+                  <% else %>
+                    <option value=<%= year%>><%= year %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+          </dl>
+
+          <dl class="time">
+            <dt class="time">Start Time</dt>
+            <dd>
+              <select name="start-hour">
+                <option value="" disabled>Hour</option>
+                <% "01".upto("12") do |hour| %>
+                  <% if hour == event[:time][0, 2] %>
+                    <option value=<%= hour %> selected><%= hour %></option>
+                  <% else %>
+                    <option value=<%= hour %>><%= hour %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="start-minute">
+                <option value="" disabled selected>Minute</option>
+                <% ["00", "15", "30", "45"].each do |minute| %>
+                  <% if minute == event[:time][3, 2] %>
+                    <option value=<%= minute %> selected><%= minute %></option>
+                  <% else %>
+                    <option value=<%= minute %>><%= minute %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="start-period">
+                <option value="" disabled selected>AM/PM</option>
+                <% if event[:time][5, 2] == "AM" %>
+                  <option value="am" selected >AM</option>
+                  <option value="pm">PM</option>
+                <% else %>
+                  <option value="am">AM</option>
+                  <option value="pm" selected >PM</option>
+                <% end %>
+              </select>
+            </dd>
+          </dl>
+          
+          <dl class="time">
+            <dt class="time">End Time</dt>
+            <dd>
+              <select name="end-hour">
+                <option value="" disabled>Hour</option>
+                <% "01".upto("12") do |hour| %>
+                  <% if hour == event[:time][10, 2] %>
+                    <option value=<%= hour %> selected><%= hour %></option>
+                  <% else %>
+                    <option value=<%= hour %>><%= hour %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="end-minute">
+                <option value="" disabled selected>Minute</option>
+                <% ["00", "15", "30", "45"].each do |minute| %>
+                  <% if minute == event[:time][13, 2] %>
+                    <option value=<%= minute %> selected><%= minute %></option>
+                  <% else %>
+                    <option value=<%= minute %>><%= minute %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </dd>
+            <dd>
+              <select name="end-period">
+                <option value="" disabled selected>AM/PM</option>
+                <% if event[:time][15, 2] == "AM" %>
+                  <option value="am" selected >AM</option>
+                  <option value="pm">PM</option>
+                <% else %>
+                  <option value="am">AM</option>
+                  <option value="pm" selected >PM</option>
+                <% end %>
+              </select>
+            </dd>
+          </dl>
+          <dl>
+            <dt>
+              <label for="price">Price </label>
+            </dt>
+            <dd>
+              <input type="text" id="price" name="price" value="<%= event[:price] %>"/>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>
+              <label for="description">Description </label>
+            </dt>
+            <dd>
+              <textarea id="desription" name="description" rows="5" cols="40"><%= event[:description] %></textarea>
+            </dd>
+          </dl>
+          <button type="submit">Submit</button>
+        </form>
+        <form class="delete" action="/delete/event/<%= event[:id] %>" method="post" >
+          <button type="submit" id="delete">&times; Delete This Event</button>
+        </form>
+      <% end %>
+    <% end %>
+  </div>
+  <img id="event-image" src="images/events.png" />
+</div>
