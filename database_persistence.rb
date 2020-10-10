@@ -21,8 +21,8 @@ class DatabasePersistence
       type = tuple['type']
       name = tuple['name']
       id = tuple['id']
-      wine_hash[type] ||= {};
-      wine_hash[type][id] = name;
+      wine_hash[type] ||= {}
+      wine_hash[type][id] = name
     end
     wine_hash
   end
@@ -35,17 +35,25 @@ class DatabasePersistence
     query("DELETE FROM wine WHERE id = $1", id)
   end
 
-  def update_all_wines(wine_hash, params)
-    params.reject! do |key, wine|
+  def filter_existing_wines(params, wine_hash)
+    params.reject do |key, wine|
       type = key.scan(/[a-zA-Z]+/)[0]
       id = key.scan(/[0-9]+/)[0]
       wine_hash[type][id] == wine
     end
+  end
 
-    wines_to_delete = params.keys.map { |key| key.scan(/[0-9]+/)[0] }
+  def get_old_wine_ids(filtered_params)
+    filtered_params.keys.map { |key| key.scan(/[0-9]+/)[0] }
+  end
+
+  def update_all_wines(wine_hash, params)
+    wines_to_add = filter_existing_wines(params, wine_hash)
+
+    wines_to_delete = get_old_wine_ids(wines_to_add)
     wines_to_delete.each { |id| remove_wine(id) }
 
-    params.each do |key, wine|
+    wines_to_add.each do |key, wine|
       type = key.scan(/[a-zA-Z]+/)[0]
       add_wine(type, wine)
     end
@@ -64,20 +72,24 @@ class DatabasePersistence
     DateTime.new(year, month, day, hour, minute)
   end
 
+  def event_from_tuple(tuple)
+    {
+      id: tuple['id'],
+      name: tuple['name'],
+      date: tuple['date'],
+      time: tuple['time'],
+      price: tuple['price'],
+      description: tuple['description']
+    }
+  end
+
   def create_events_array
     events = query("SELECT * FROM events")
     events_array = []
     events.each do |tuple|
-      event = {
-        id: tuple['id'],
-        name: tuple['name'],
-        date: tuple['date'],
-        time: tuple['time'],
-        price: tuple['price'],
-        description: tuple['description']
-      }
-      events_array.push(event)
+      events_array.push(event_from_tuple(tuple))
     end
+
     events_array.sort_by do |event|
       parse_date(event)
     end
@@ -88,8 +100,8 @@ class DatabasePersistence
       INSERT INTO events (name, date, time, price, description) VALUES
         ($1, $2, $3, $4, $5)
     SQL
-    query(sql, event[:name], event[:date], event[:time], 
-      event[:price], event[:description])
+    query(sql, event[:name], event[:date], event[:time],
+          event[:price], event[:description])
   end
 
   def update_event(event, id)
@@ -98,7 +110,7 @@ class DatabasePersistence
         description = $5 WHERE id = $6
     SQL
     query(sql, event[:name], event[:date], event[:time],
-      event[:price], event[:description], id)
+          event[:price], event[:description], id)
   end
 
   def delete_event(id)

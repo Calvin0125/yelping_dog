@@ -13,19 +13,18 @@ configure(:development) do
 end
 
 helpers do
-
-  def formatTime(params)
-    startTime = "#{params['start-hour']}:#{params['start-minute']}" +
+  def format_time(params)
+    start_time = "#{params['start-hour']}:#{params['start-minute']}" \
                 "#{params['start-period']}"
-    endTime = "#{params['end-hour']}:#{params['end-minute']}" +
+    end_time = "#{params['end-hour']}:#{params['end-minute']}" \
               "#{params['end-period']}"
-    "#{startTime} - #{endTime}"
+    "#{start_time} - #{end_time}"
   end
 
   def event_from_params(params)
     date = "#{params['month']}/#{params['day']}/#{params['year']}"
-    time = formatTime(params)
-    return {
+    time = format_time(params)
+    {
       name: params['name'],
       date: date,
       time: time,

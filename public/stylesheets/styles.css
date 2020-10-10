@@ -231,10 +231,10 @@ img.weekly-wine {
 /* styles for events page */
 
 div.event-wrapper {
-  display: flex;
   background-color: #f3efe0;
-  padding: 20px 35px 20px 20px;
+  display: flex;
   justify-content: space-between;
+  padding: 20px 35px 20px 20px;
 }
 
 div.event-list {
@@ -243,8 +243,8 @@ div.event-list {
 
 h2.event {
   font-size: 2.5rem;
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 
 dl.event {
@@ -258,8 +258,8 @@ dl.event dt {
 }
 
 dl.event dd {
-  margin-bottom: 5px;
   font-size: 1.3rem;
+  margin-bottom: 5px;
 }
 
 input:checked + label + form {
@@ -267,28 +267,28 @@ input:checked + label + form {
 }
 
 label.add-event {
-  font-size: 1.5rem;
   color: blue;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 label.edit-event {
-  font-size: 1.5rem;
   color: green;
   cursor: pointer;
   display: block;
+  font-size: 1.5rem;
   margin-bottom: 5px;
 }
 
 input:checked + label::before {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background: rgba(0, 0, 0, .4);
+  bottom: 0;
   content: "";
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 
 #event-image {
@@ -296,26 +296,26 @@ input:checked + label::before {
 }
 
 .event-form {
-  position: absolute;
-  z-index: 100;
-  top: 30%;
-  left: 30%;
   background: #f3efe0;
-  padding: 15px 30px 30px 30px;
   font-size: 1.5rem;
+  left: 30%;
+  padding: 15px 30px 30px 30px;
+  position: absolute;
+  top: 30%;
+  z-index: 100;
 }
 
 .event-form input, select, textarea {
   font-size: 1.5rem;
+  margin: 0;
   padding: 5px;
   width: 100%;
-  margin: 0;
 }
 
 .event-form dl {
-  width: 100%;
   align-items: center;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .event-form dl dd {
@@ -324,28 +324,28 @@ input:checked + label::before {
 
 #cancel {
   color: red;
+  cursor: pointer;
   float: right;
   margin-bottom: 15px;
-  cursor: pointer;
 }
 
 textarea {
+  box-sizing: border-box;
   font-family: Arial;
   max-width: 100%;
-  box-sizing: border-box;
 }
 
 #delete {
   background-color: #f3efe0;
   border: none;
+  color: red;
+  cursor: pointer;
+  font-family: 'Libre';
   font-size: 1.5rem;
   margin-bottom: 50px;
   margin-top: 0;
-  width: auto;
   padding: 5px 0;
-  color: red;
-  font-family: 'Libre';
-  cursor: pointer;
+  width: auto;
 }
 
 /* styles for about page */
