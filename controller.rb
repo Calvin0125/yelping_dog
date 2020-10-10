@@ -60,6 +60,18 @@ get "/wine_menu" do
   erb :wine_menu, layout: :layout
 end
 
+get "/edit" do
+  if session[:logged_in]
+    erb :edit, layout: :layout
+  else
+    redirect "/admin"
+  end
+end
+
+get "/events" do
+  erb :events, layout: :layout
+end
+
 get "/admin" do
   erb :admin, layout: :layout
 end
@@ -77,14 +89,6 @@ end
 post "/logout" do
   session[:logged_in] = false
   redirect "/admin"
-end
-
-get "/edit" do
-  erb :edit, layout: :layout
-end
-
-get "/events" do
-  erb :events, layout: :layout
 end
 
 post "/add/event" do
