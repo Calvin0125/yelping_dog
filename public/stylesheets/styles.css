@@ -260,6 +260,8 @@ dl.event dt {
 dl.event dd {
   font-size: 1.3rem;
   margin-bottom: 5px;
+  word-wrap: break-word;
+  line-height: 1.5rem;
 }
 
 input:checked + label + form {
