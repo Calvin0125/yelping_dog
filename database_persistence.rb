@@ -3,6 +3,8 @@ class DatabasePersistence
   def initialize(logger)
     @db = if Sinatra::Base.production?
             PG.connect(ENV['DATABASE_URL'])
+          elsif ENV["RACK_ENV"] == "test"
+            PG.connect(dbname: "yelping_dog_test")
           else
             PG.connect(dbname: "yelping_dog")
           end
@@ -10,7 +12,7 @@ class DatabasePersistence
   end
 
   def query(statement, *params)
-    @logger.info "#{statement}: #{params}"
+    @logger.info "#{statement}: #{params}" unless ENV["RACK_ENV"] == "test"
     @db.exec_params(statement, params)
   end
 
@@ -60,8 +62,6 @@ class DatabasePersistence
   end
 
   def parse_date(event)
-    puts "parse date function"
-    puts event
     date = event[:date]
     month = date[0, 2].to_i
     day = date[3, 2].to_i
