@@ -8,6 +8,8 @@ gem "erubis"
 gem "pg"
 gem "pry"
 gem "pry-byebug"
+gem "minitest", "~>5.14.1"
+gem "simplecov"
 
 group :production do
   gem "puma"
