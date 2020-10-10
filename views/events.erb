@@ -36,7 +36,7 @@
           <dd>
             <select name="year">
               <option value="" disabled selected>Year</option>
-              <% "2000".upto("2100") do |year| %>
+              <% "2020".upto("2100") do |year| %>
                 <option value=<%= year%>><%= year %></option>
               <% end %>
             </select>
@@ -170,7 +170,7 @@
             <dd>
               <select name="year">
                 <option value="" disabled>Year</option>
-                <% "2000".upto("2100") do |year| %>
+                <% "2020".upto("2100") do |year| %>
                   <% if year == event[:date][6, 4] %>
                     <option value=<%= year%> selected><%= year %></option>
                   <% else %>
