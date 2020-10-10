@@ -302,8 +302,8 @@ input:checked + label::before {
   font-size: 1.5rem;
   left: 30%;
   padding: 15px 30px 30px 30px;
-  position: absolute;
-  top: 30%;
+  position: fixed;
+  top: 58px;
   z-index: 100;
 }
 
