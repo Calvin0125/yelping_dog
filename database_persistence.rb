@@ -116,4 +116,8 @@ class DatabasePersistence
   def delete_event(id)
     query("DELETE FROM events WHERE id = $1", id)
   end
+
+  def disconnect
+    @db.close
+  end
 end

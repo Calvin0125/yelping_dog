@@ -40,6 +40,10 @@ before do
   @events = @storage.create_events_array
 end
 
+after do
+  @storage.disconnect
+end
+
 get "/" do
   redirect "/home"
 end
