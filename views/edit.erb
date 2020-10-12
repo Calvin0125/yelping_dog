@@ -4,14 +4,14 @@
       <h2>This Week's Wines by the Glass</h2>
       <% @wine_hash.each do |type, list| %>
         <form action="/add/<%= type %>" method="post" id="add">
-          <button type="submit" class="edit"><img src="/images/plus.png"></button>
+          <button type="submit" class="edit"><img src="/images/plus.png" alt="plus sign in a circle" ></button>
         </form>
         <h3 id="<%= type %>"><%= type.capitalize %></h3>
         <ul>
         <% list.each do |id, wine| %>
           <li class="edit">
             <form action="/remove/<%= type %>/<%= id %>" method="post" id="remove">
-              <button type="submit" class="edit"><img src="/images/minus.png"></button>
+              <button type="submit" class="edit"><img src="/images/minus.png" alt="minus sign in a circle" ></button>
             </form>
             <input form="submit-changes" class="wine-menu" type="text" value="<%= wine %>" name="<%= type.to_s + id.to_s %>">
           </li>
@@ -20,5 +20,5 @@
       <% end %>
       <button type="submit" form="submit-changes">Submit Changes</button>
     </div>
-  <img class="weekly-wine" src="/images/grapes.png">
+  <img class="weekly-wine" src="/images/grapes.png" alt="An outline of grapes hanging from a vine." >
 </div>
